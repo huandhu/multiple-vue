@@ -1,0 +1,52 @@
+#!/usr/bin/env node
+
+const Khaos = require('khaos')
+const program = require('commander')
+const chalk = require('chalk')
+const resolve = require('path').resolve
+const join = require('path').join
+const exists = require('fs').existsSync
+const logger = require('../utils/logger')
+
+program
+    .usage('<page-name>')
+
+/**
+ * Help
+ */
+program.on('--help', function () {
+    console.log('  Examples:')
+    console.log()
+    console.log(chalk.gray('    # create a new page'))
+    console.log('    $ tool init page-name')
+    console.log()
+})
+
+program.parse(process.argv)
+if (program.args.length < 1) return program.help()
+
+console.log()
+process.on('exit', function () {
+  console.log('exit init')
+})
+
+var pagename = program.args[0]
+var to = resolve(__dirname, '../views/' + pagename)
+if (exists(to)) {
+    logger.fatal('"%s" already exists.', pagename)
+}
+
+generate(to, function (err) {
+    if (err) logger.fatal(err)
+    console.log()
+    logger.success('Generated "%s".', name)
+})
+
+function generate (dest) {
+    var template = resolve(__dirname, '../template')
+    var khaos = new Khaos(template)
+
+    khaos.generate(dest, function(err){
+        if (err) logger.fatal(err)
+    })
+}

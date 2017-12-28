@@ -1,0 +1,5 @@
+build/*.js
+config/*.js
+utils/*.js
+src/utils/*.js
+src/plugins

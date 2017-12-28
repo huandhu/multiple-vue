@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+
+const chalk = require('chalk')
+const resolve = require('path').resolve
+const readdirSync = require('fs').readdirSync
+const logger = require('../utils/logger')
+
+console.log()
+process.on('exit', function () {
+  console.log()
+})
+
+listPage()
+
+function listPage () {
+    var views = resolve(__dirname, '../views')
+    readdirSync(views, {}, function (err, files) {
+        files.forEach(function(item) {
+            console.log('    [ ' + chalk.green(item) + ' ]')
+        })
+    })
+}
+
