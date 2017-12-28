@@ -1,6 +1,13 @@
 # multiple-vue
 
-> A Vue.js project
+> 一个以vue-cli中webpack模板为基础构建的Vue多页项目
+
+## 新建页面
+
+``` bash
+# 新建页面模板，将以template文件夹的内容新建每个页面的模板，你也可以修改template下的内容构建自己的模板
+  bin/tool init <page-name>
+```
 
 ## Build Setup
 
@@ -8,7 +15,7 @@
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost:8091
 npm run dev
 
 # build for production with minification
